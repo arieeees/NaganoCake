@@ -2,13 +2,15 @@ Rails.application.routes.draw do
   
   # 顧客用
   # URL /customers/sign_in...
+  root to: 'public/homes#top'
+  get 'about', to: 'public/homes#about'
+  
   devise_for :customers, controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
   
   namespace :public do
-    root 'homes#top'
     resources :items, only: [:index, :show]
     resources :customer, only: [:show, :edit, :update]
     resources :orders, only: [:index, :show]
@@ -22,7 +24,6 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    root 'homes#top'
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items, except: [:destroy]
     resources :genres, except: [:new, :show, :destroy]
