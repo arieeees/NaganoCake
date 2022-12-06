@@ -1,2 +1,35 @@
-<h1>Admin::Home#top</h1>
-<p>Find me in app/views/admin/home/top.html.erb</p>
+<div class="container col-12">
+  <h1 class="text-center bg-light">注文履歴一覧</h1>
+  <div class="row my-5">
+    <div class="col-md-10 mx-auto">
+      <table class='table'>
+        <thead>
+          <tr>
+            <th class="col-md-3">購入日時</th>
+            <th class="col-md-3">購入者</th>
+            <th class="col-md-3">注文個数</th>
+            <th class="col-md-3">注文ステータス</th>
+          </tr>
+        </thead>
+        <tbody class="border-bottom border-Secondary">
+          <% @orders.each do |order| %>
+            <tr>
+              <td class="col-md-3">
+                <%= link_to admin_orders_path(order) do %>
+                  <%= order.created_at.to_s(:datetime_jp_long) %></td>
+                <% end %>
+              <td class="col-md-3"><%= order.customer.full_name %></td>
+              <td class="col-md-3"><%= order.ordered_itemes_total(order) %></td>
+              <td class="col-md-3"><%= order.order_status_i18n %></td>
+            </tr>
+          <% end %>
+          <%= paginate @orders %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+Ter

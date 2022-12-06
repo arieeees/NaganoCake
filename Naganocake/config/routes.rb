@@ -14,15 +14,18 @@ Rails.application.routes.draw do
   devise_scope :customer do
    get '/customers/sign_out' => 'public/sessions#destroy'
   end
+
+  get 'public/customers/my_page', to: 'public/customers#show'
+  get 'public/customers/information/edit', to: 'public/customers#edit'
+  get 'public/customers/unsubscribe', to: 'public/customers#unsubscribe'
+  
+  get 'public/orders/complete', to: 'public/orders#complete'
   
   namespace :public do
     resources :items, only: [:index, :show]
-    resources :orders, only: [:index, :show]
+    resources :orders, only: [:index, :show, :new]
     resources :addresses, except: [:new, :show]
     resources :cart_items, only: [:index]
-    get 'customers/my_page', to: '/customer#show'
-    get 'customers/information/edit', to: '/customer#edit'
-    get 'customers/unsubscribe', to: '/customer#unsubscribe'
     
   end
 
@@ -38,7 +41,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items, except: [:destroy]
-    resources :genres, except: [:new, :show, :destroy]
+    resources :genres, only: [:index, :edit]
     resources :orders, only: [:show]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
