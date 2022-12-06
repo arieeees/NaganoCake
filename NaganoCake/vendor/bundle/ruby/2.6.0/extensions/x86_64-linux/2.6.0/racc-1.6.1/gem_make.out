@@ -1,0 +1,17 @@
+current directory: /home/ec2-user/environment/NaganoCake/vendor/bundle/ruby/2.6.0/gems/racc-1.6.1/ext/racc/cparse
+/home/ec2-user/.rvm/rubies/ruby-2.6.3/bin/ruby -I /home/ec2-user/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0 extconf.rb
+checking for rb_block_call()... yes
+checking for rb_ary_subseq()... yes
+creating Makefile
+
+current directory: /home/ec2-user/environment/NaganoCake/vendor/bundle/ruby/2.6.0/gems/racc-1.6.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20221205-25891-1l0ld6d sitelibdir\=./.gem.20221205-25891-1l0ld6d clean
+
+current directory: /home/ec2-user/environment/NaganoCake/vendor/bundle/ruby/2.6.0/gems/racc-1.6.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20221205-25891-1l0ld6d sitelibdir\=./.gem.20221205-25891-1l0ld6d
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /home/ec2-user/environment/NaganoCake/vendor/bundle/ruby/2.6.0/gems/racc-1.6.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20221205-25891-1l0ld6d sitelibdir\=./.gem.20221205-25891-1l0ld6d install
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20221205-25891-1l0ld6d/racc

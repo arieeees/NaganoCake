@@ -10,11 +10,19 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   
+  devise_scope :customer do
+   get '/customers/sign_out' => 'public/sessions#destroy'
+  end
+  
   namespace :public do
     resources :items, only: [:index, :show]
-    resources :customer, only: [:show, :edit, :update]
     resources :orders, only: [:index, :show]
     resources :addresses, except: [:new, :show]
+    resources :cart_items, only: [:index]
+    get 'customers/my_page', to: '/customer#show'
+    get 'customers/information/edit', to: '/customer#edit'
+    get 'customers/unsubscribe', to: '/customer#unsubscribe'
+    
   end
 
   # 管理者用
