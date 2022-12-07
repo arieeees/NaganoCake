@@ -1,18 +1,73 @@
-<div class="container-fluid">
-  <div style="height: 600px; background-color: rgba(255,0,0,0.1);">
-  <div class="row h-100">
-    <div class="col-3 bg-success">
-      <%= render "public/shared/sidebar" %>      
+<div class="carousel slide carousel-fade" id="sample" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#sample" data-slide-to="0" class="active"></li>
+    <li data-target="#sample" data-slide-to="1"></li>
+    <li data-target="#sample" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner ">
+    <div class="carousel-item active data-bs-interval="5000"　text-right">
+      <div class="carousel-caption ">
+        <div class ="first-slid">
+          <h5>ようこそ、naganoCAKEへ！</h5>
+          <p>
+            こちらでは、長野で育てられた</br>
+            牛乳から作られたクリーミーな</br>
+            味わいの生クリームを使用しています。
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="col">
-      <div class="flex-row">
-        <div class="d-flex justify-content-center bg-warning">
-          ようこそ、ながのCAKEへ！</br>
-          このサイトは、ケーキ販売のECサイトになります。</br>
-          会員でない方も商品の閲覧はできますが、</br>
-          購入には会員登録が必要になります。</br>
+    <div class="carousel-item data-bs-interval="5000"　text-right">
+      <div class="carousel-caption">
+        <div class ="second-slid">
+          <h5>会員登録がお済でない方へ</h5>
+          <p>
+            会員でない方も商品の閲覧はできますが、</br>
+            購入には会員登録が必要になります。</br>
+            <%= link_to "会員登録へ", new_customer_registration_path %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item data-bs-interval="5000"　 text-right">
+      <div class="carousel-caption">
+        <div class ="third-slid">
+          <h5>パティシエ　フレデ・マーキュリー</h5>
+          <p>
+            イギリスで数年修行した後、</br>
+            出身地である長野県にnaganoCake</br>
+            をオープンしました。<%= link_to "ABOUTへ", about_path %>
+          </p>
         </div>
       </div>
     </div>
   </div>
+  <a href="#sample" class="carousel-control-prev" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+    <span class="sr-only">前の画像へ</span>
+  </a>
+  <a href="#sample" class="carousel-control-next" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+    <span class="sr-only">次の画像へ</span>
+  </a>
+</div>
+<div class="genres py-3 ml-3">
+</div>
+<div class="row py-3 mx-3 justify-content-center">
+  <h1>新着商品</h1>
+  <table class="table table-borderless">
+    <tr class="d-flex d-block flex-wrap justify-content-center ">
+      <% @items.each do |item| %>
+       <td class="new_item_table">
+          <%= link_to item_path(item) do %>
+            <p class="figure-caption"><%= item.name %></p>
+            <p class="figure-caption">¥<%= item.with_tax_price %></p>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  </table>
+</div>
+<div class="col text-right">
+  <%= link_to "全ての商品を見る>", public_items_path %>
 </div>

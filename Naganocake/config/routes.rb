@@ -25,8 +25,11 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
     resources :orders, only: [:index, :show, :new]
     resources :addresses, except: [:new, :show]
-    resources :cart_items, only: [:index]
-    
+    resources :cart_items, only: [:index, :destroy, :update, :create] do
+     collection do
+        delete '/destroy_all' => 'cart_items#destroy_all'
+      end      
+    end
   end
 
 # 管理者用

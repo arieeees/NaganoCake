@@ -1,2 +1,66 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div class="container mt-5">
+  <div class="mx-auto">
+    <div class="row mb-3">
+      <h3>ショッピングカート</h3>
+      <div class="col text-right">
+        <%= link_to "カートを空にする", destroy_all_public_cart_items_path, class: 'btn btn-outline-danger', method: :delete %>
+      </div>
+    </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">商品名</th>
+          <th class="text-center">価格(税込)</th>
+          <th class="text-center">数量</th>
+          <th class="text-center">小計</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td class="align-middle">
+              <%= image_tag cart_item.item.get_image, size: "50x50" %>
+              <%= cart_item.item.name %>
+            </td>
+            <td class="align-middle text-center"><%= cart_item.item.with_tax_price %></td>
+            <td class="align-middle text-center">
+              <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
+                <% if cart_item.quantity < 10 %>
+                  <%= f.select :quantity, *[1..10], class: "inline-block", include_blank: cart_item.quantity %>
+                <% else %>
+                  <%= f.text_field :quantity, class: "form-control-sm", include_blank: cart_item.quantity, type: "number" %>
+                <% end %>
+                <%= f.hidden_field :item_id, :value => cart_item.item.id %>
+                <%= f.submit '変更', class: "btn btn-outline-success btn-sm" %>
+              <% end %>
+            </td>
+            <td class="align-middle text-center"><%= cart_item.item.with_tax_price * cart_item.quantity %></td>
+            <td class="align-middle text-center"><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class: "btn btn-outline-danger" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="row mt-4">
+      <div class="col">
+        <%= link_to "買い物を続ける", root_path, class: "btn btn-outline-primary" %>
+      </div>
+      <div class="col-4 pull-right">
+        <table class="table table-bordered">
+          <tr>
+            <td>合計金額</td>
+            <% @cart_items.each do |cart_item| %>
+              <% @total = @total + cart_item.item.with_tax_price * cart_item.quantity %>
+            <% end %>
+            <td><%= @total %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="text-center mt-5">
+      <% if current_customer.cart_items.present? %>
+        <%= link_to "情報入力に進む", new_order_path, class: "btn btn-outline-success btn-lg" %>
+      <% end %>
+    </div>
+  </div>
+</div>
