@@ -1,23 +1,31 @@
-<%= image_tag 'Kei1.jfif', class: "index-image" %>
-<div class="genres py-3 ml-3">
-</div>
-<div class="row py-3 mx-3 justify-content-center">
-  <h3>商品一覧</h3>
-  <p class="col p-2">(全<%= @all_items.count %>件)</p>
-  <table class="table table-borderless">
-    <tr class="d-flex d-block flex-wrap justify-content-center ">
-      <% @items.each do |item| %>
-        <td class="new_item_table">
-          <%= link_to item_path(item) do %>
-            <%= image_tag item.get_image, class: "new_item_image"  %>
-            <p class="figure-caption"><%= item.name %></p>
-            <p class="figure-caption">¥<%= item.with_tax_price %></p>
+<div class="container-fluid pt-4">
+  <div class="row border">
+    <div class="col-2 py-4 border border-dark" style="height: 300px;">
+      <%= render 'public/shared/sidebar' %>
+    </div>    
+    <div class="col-10" style="height: 1000px;">
+      <div class="row">
+        <div class="col pt-4 border">
+          <h3>商品一覧</h3>
+          <p class="col">(全<%= @all_items.count %>件)</p>
+        </div>
+        <table class="table table-borderless">
+        <tr class="d-flex d-block flex-wrap justify-content-center ">
+          <% @items.each do |item| %>
+            <td class="new_item_table">
+              <%= link_to item_path(item) do %>
+                <%= image_tag item.get_image, class: "new_item_image"  %>
+                <p class="figure-caption"><%= item.name %></p>
+                <p class="figure-caption">¥<%= item.with_tax_price %></p>
+              <% end %>
+            </td>
           <% end %>
-        </td>
-      <% end %>
-    </tr>
-  </table>
-</div>
-<div class="col text-right">
-  <%= paginate @items %>
+        </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col text-right">
+    <%= paginate @items %>
+  </div>
 </div>
