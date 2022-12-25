@@ -1,2 +1,55 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<div class="container col-12">
+  <h1 class="bg-light text-center"><%= @customer.full_name %>さんの会員詳細</h1>
+  
+  <div class="row mt-4">
+    <div class="col-10 align-center offset-1">
+      <table class='table table-borderless'>
+        <tbody>
+          <tr>
+            <td>会員ID</td>
+            <td><%= @customer.id %></td>
+          </tr>
+          <tr>
+            <td>氏名</td>
+            <td><%= @customer.full_name %></td>
+          </tr>
+          <tr>
+            <td>フリカナ</td>
+            <td><%= @customer.full_name_kana %></td>
+          </tr>
+          <tr>
+            <td>郵便番号</td>
+            <td><%= @customer.zip_code %></td>
+          </tr>
+          <tr>
+            <td>住所</td>
+            <td><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <td>電話番号</td>
+            <td><%= @customer.phone_number %></td>
+          </tr>
+          <tr>
+            <td>メールアドレス</td>
+            <td><%= @customer.email %></td>
+          </tr>
+          <tr>
+            <td>会員ステータス</td>
+            <td>
+              <% if @customer.customer_status == false %>
+                <b class="text-success">有効</b>
+              <% else %>
+                <b class="text-black-50">退会</b>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-lg-5 mt-4 text-center"><%= link_to "編集する", edit_admin_customer_path, class: "btn btn-outline-success", style: 'width:170px' %></div>
+        <div class="col-lg-5 mt-4 text-center"><%= link_to "注文履歴一覧を見る", admin_path, class: "btn btn-outline-primary"  %></div>
+      </div>
+    </div>
+  </div>
+</div>

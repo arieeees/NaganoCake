@@ -18,7 +18,7 @@
 
       <div class="row mb-3">
         <%= f.label "商品説明", class: "col-md-3 col-form-label" %>
-        <%= f.text_area :description, class: "col-md-5 form-control item_description" %>
+        <%= f.text_area :introduction, class: "col-md-5 form-control item_introduction" %>
       </div>
 
       <div class="row mb-3">
@@ -34,10 +34,10 @@
       <div class="row mb-3">
         <%= f.label "販売ステータス", class: "col-md-3 col-form-label" %>
         <div class = "form-check">
-          <%= f.radio_button :sale_status, "true" %>
-          <%= f.label :sale_status, "販売中", value: :true %>
-          <%= f.radio_button :sale_status, "false"%>
-          <%= f.label :sale_status, "販売停止中", value: :false %>
+          <%= f.radio_button :is_active, "true" %>
+          <%= f.label :is_active, "販売中", value: :true %>
+          <%= f.radio_button :is_active, "false"%>
+          <%= f.label :is_active, "販売停止中", value: :false %>
         </div>
       </div>
 

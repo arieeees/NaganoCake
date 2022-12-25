@@ -1,2 +1,47 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<div class="container col-12">
+  <h1 class="text-center bg-light">商品編集</h1>
+  <%= render "public/shared/error_messages", resource: @item %>
+  <div class="row mt-5 g-3 d-flex justify-content-center">
+    <%= form_with class: "col-md-8", model: @item, url: admin_item_path, method: :patch do |f| %>
+
+      <div class="row mb-3">
+        <%= f.label "商品画像", class: "col-md-3 col-form-label" %>
+        <%= f.file_field :image, class: "col-md-5 form-control-file image", accept: 'image/*' %>
+      </div>
+
+      <div class="row mb-3">
+        <%= f.label "商品名", class: "col-md-3 col-form-label" %>
+        <%= f.text_field :name, class: "col-md-5 form-control item_name" %>
+      </div>
+
+      <div class="row mb-3">
+        <%= f.label "商品説明", class: "col-md-3 col-form-label" %>
+        <%= f.text_area :introduction, class: "col-md-5 form-control item_introduction" %>
+      </div>
+
+      <div class="row mb-3">
+        <%= f.label "ジャンル", class: "col-md-3 form-select" %>
+        <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+      </div>
+
+      <div class="row mb-3">
+        <%= f.label "税抜価格", class: "col-md-3 col-form-label" %>
+        <%= f.text_field :price, class: "col-md-5 form-control item_name", type: "number" %>
+      </div>
+
+      <div class="row mb-3">
+        <%= f.label "販売ステータス", class: "col-md-3 col-form-label" %>
+        <div class = "form-check">
+          <%= f.radio_button :is_active, "true" %>
+          <%= f.label :is_active, "販売中", value: :true %>
+          <%= f.radio_button :is_active, "false"%>
+          <%= f.label :is_active, "販売停止中", value: :false %>
+        </div>
+      </div>
+
+      <div class="row mb-3 justify-content-center">
+        <%= f.submit "変更を更新", class: "col-md-2 btn btn-outline-success btn-lg" %>
+      </div>
+    </div>
+    <% end %>
+  </div>

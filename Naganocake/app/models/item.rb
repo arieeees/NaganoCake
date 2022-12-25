@@ -7,14 +7,14 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   validates :name, presence: true
-  validates :description, presence: true
+  validates :introduction, presence: true
   validates :price, presence: true
 
   def get_image
     if image.attached?
       image
     else
-      'no_image.jpeg'
+      'no_image.jpg'
     end
   end
 
@@ -22,8 +22,8 @@ class Item < ApplicationRecord
     (price * 1.1).floor
   end
 
-  def sale_status_method
-    if sale_status == true
+  def is_active_method
+    if is_active == true
       '販売中'
     else
       '販売停止中'
