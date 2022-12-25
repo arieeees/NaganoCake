@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items, except: [:destroy]
-    resources :genres, only: [:index, :edit]
+    resources :genres, only: [:index, :edit, :create, :update]
     resources :orders, only: [:show]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

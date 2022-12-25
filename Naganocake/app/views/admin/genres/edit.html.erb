@@ -1,2 +1,17 @@
-<h1>Admin::Genres#edit</h1>
-<p>Find me in app/views/admin/genres/edit.html.erb</p>
+<div class="container col-12">
+  <h1 class="text-center bg-light mx-auto">ジャンル編集</h1>
+  <div class="text-center mt-5 mb-5">
+    <%= render "public/shared/error_messages", resource: @genre %>
+    <%= form_with model: @genre, url: admin_genre_path, method: :patch do |f| %>
+      <div class="form-check-inline">
+        <%= f.label :"ジャンル名" %>
+      </div>
+      <div class="form-check-inline">
+        <%= f.text_field :name, class: 'form-control genre_name' %>
+      </div>
+      <div class="form-check-inline">
+        <%= f.submit "変更を保存", class: 'btn btn-outline-success' %>
+      </div>
+    <% end %>
+  </div>
+</div>

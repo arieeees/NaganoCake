@@ -1,2 +1,68 @@
-<h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+<div class='container col-12 px-5 px-sm-0'>
+  <h1 class="text-center bg-light">商品詳細</h1>
+
+  <div class="row mt-5">
+    <div class="col-md-4 offset-2">
+        <%= image_tag @item.get_image, size: "300x200" %>
+    </div>
+
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-3">
+          <%= "商品名" %>
+        </div>
+        <div class="h4 col-md-5">
+          <%= @item.name %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <%= "商品説明" %>
+        </div>
+        <div class="h4 col-md-5" >
+          <%= @item.description %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <%= "ジャンル" %>
+        </div>
+        <div class="h4 col-md-5" >
+          <%= @item.genre.name %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <%= "税込価格(税抜価格)" %>
+        </div>
+        <div class="h4 col-md-5" >
+          <span class="h3">¥<%= @item.price %></span>(<%= @item.with_tax_price %>)円
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <%= "販売ステータス" %>
+        </div>
+        <div class="h4 col-md-5" >
+          <%if @item.sale_status == true %>
+             <b class="text-success">販売中</b>
+          <% else %>
+            <b class="text-black-50">販売停止中</b>
+          <% end %>
+        </div>
+      </div>
+
+        <div class="row mt-3">
+          <%= form_with class: "col-md-8", model: @item, url: edit_admin_item_path, method: :get do |f| %>
+          <div class="row mb-3 justify-content-center">
+            <%= f.submit "編集する", class: "col-md-4 btn btn-outline-success btn-lg" %>
+          </div>
+        </div>
+        <% end %>
+    </div>
+  </div>
+</div>

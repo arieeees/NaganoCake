@@ -1,9 +1,10 @@
 <nav class="navbar navbar-expand navbar-light py-5 border-bottom border-dark border-2 ">
   <div class="container">
-    <a class="py-2 px-5 navbar-brand border border-dark" href="/"><strong>LOGO</strong></a>
       <% if admin_signed_in? %>
+        <a class="py-2 px-5 navbar-brand border border-dark" href="/admin"><strong>LOGO</strong></a>
         <%= render "layouts/admin_header" %>
       <% else %>
+        <a class="py-2 px-5 navbar-brand border border-dark" href="/"><strong>LOGO</strong></a>
         <%= render "layouts/customer_header" %>
       <% end %>
   </div>

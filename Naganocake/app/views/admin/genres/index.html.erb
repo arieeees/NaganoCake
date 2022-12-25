@@ -1,2 +1,45 @@
-<h1>Admin::Genres#index</h1>
-<p>Find me in app/views/admin/genres/index.html.erb</p>
+<div class="container col-12">
+  <h1 class="text-center bg-light">ジャンル一覧・追加</h1>
+  <div class="text-center mt-5 mb-5">
+    <%= render "public/shared/error_messages", resource: @genre %>
+    <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
+      <div class="form-check-inline">
+        <%= f.label :"ジャンル名" %>
+      </div>
+      <div class="form-check-inline">
+        <%= f.text_field :name, class: 'form-control genre_name' %>
+      </div>
+      <div class="form-check-inline">
+        <%= f.submit "新規登録", class: 'btn btn-outline-success' %>
+      </div>
+    <% end %>
+  </div>
+  <table class="col-6 offset-3">
+    <thead class="bg-light border-top border-bottom border-secondary">
+      <tr>
+        <th><p class="my-3 pl-5 ml-5">ジャンル</p></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <!--<tbody class="col-md-6 ">-->
+      <% @genres.each do |genre| %>
+        <tr class="border-bottom border-secondary">
+          <td><p class="my-3 pl-5 ml-5"><%= genre.name %></p></td>
+          <td><p class="my-3"><%= link_to '編集', edit_admin_genre_path(genre.id), class: "btn btn-sm btn-outline-success" %></p></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <!--<tbody class="col-md-6 ">-->
+    <!--  <%#= if @genres.count = > (5).exists? %>-->
+    <!--  <%# @genres[5..10].each do |genre| %>-->
+    <!--    <tr class="border-bottom border-secondary">-->
+    <!--      <td><%#= genre.name %></td>-->
+    <!--      <td><%#= link_to '編集', edit_admin_genre_path(genre.id), class: "btn btn-sm btn-success" %></td>-->
+    <!--    </tr>-->
+    <!--  <%# end %>-->
+    <!--  <%# end %>-->
+    <!--</tbody>-->
+  </table>
+  <p class="text-center"><%= paginate @genres %></p>
+</div>

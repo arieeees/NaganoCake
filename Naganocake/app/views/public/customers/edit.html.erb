@@ -1,2 +1,67 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xl-1"></div>
+    <h4 class="col-lg-3 bg-light text-center">会員情報編集</h4>
+  </div>
+  <%= render "public/shared/error_messages", resource: @customer %>
+  <%= form_with model: @customer, url: public_customers_my_page_path, method: :patch do |f| %>
+    <div class="row mt-5">
+      <div class="form-group col-lg-2 offset-md-1">
+        <%= f.label :last_name,"氏名" %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.text_field :last_name, autofocus: true, class: "form-control border-dark" %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.text_field :first_name, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-lg-2 offset-md-1">
+        <%= f.label :last_name_kana,"フリガナ" %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.text_field :last_name_kana, class: "form-control border-dark" %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.text_field :first_name_kana, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-lg-2 offset-md-1">
+        <%= f.label :zip_code,"郵便番号" %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.text_field :zip_code, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-lg-2 offset-md-1">
+        <%= f.label :address,"住所" %>
+      </div>
+      <div class="form-group col-lg-6">
+        <%= f.text_field :address, size: "72%", class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 offset-1">
+        <%= f.label :phone_number,"電話番号" %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.text_field :phone_number, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-lg-2 offset-md-1">
+        <%= f.label :email,"メールアドレス" %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.text_field :email, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 mt-4 offset-lg-3 text-center"><%= f.submit "編集内容を保存", style: 'width:150px', class: "btn btn-outline-success" %></div>
+      <div class="col-lg-3 mt-4 text-center"><%= link_to "退会する", public_customers_unsubscribe_path, style: 'width:150px', class: "btn btn-outline-danger" %></div>
+    </div>
+  <% end %>
+</div>
