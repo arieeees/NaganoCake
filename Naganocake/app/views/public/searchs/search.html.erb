@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="text-center pb-5 mx-auto">
+    <h5>さらにジャンルでしぼりこむ</h5>
+    <%= form_with url: search_path, method: :get do |f| %>
+      <%= f.hidden_field :content, :value => @content %>
+      <%= f.hidden_field :check, :value => true %>
+      <p id="select_alert" class="text-danger font-weight-bold"><%= flash[:select_alert] %></p>
+      <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {include_blank: "ジャンル選択"}, { class: "col-4 text-center mb-2"} %><br>
+      <%= f.submit 'しぼりこむ', class: "btn btn-outline-primary" %>
+    <% end %>
+  </div>
+</div>
+<% unless @genre_id.present? %>
+  <div class="container">
+    <div class="text-center mb-5">
+      <h4>"<%= @content %>"の検索結果</h4>
+    </div>
+    <% if @items.present? %>
+      <table class="table table-inverse table-hover">
+        <% @items.each do |item| %>
+          <tr>
+            <td class="align-middle">
+              <%= link_to item_path(item) do %>
+                <%= image_tag item.get_image, size: "200x130" %>
+              <% end %>
+            </td>
+            <td class="align-middle"><p><%= item.name %></p></td>
+            <td class="align-middle"><p><%= item.description %></p></td>
+            <td class="align-middle"><p>¥<%= item.with_tax_price %></p></td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <div class="text-center mb-5">
+        <h4>見つかりませんでした</h4>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="container">
+    <% if @items_genre_search.present? %>
+      <div class="text-center mb-5">
+        <h4>"<%= @content %>"の検索結果をジャンル名"<%= @genre.name %>"でしぼりこんだ結果</h4>
+      </div>
+      <table class="table table-inverse table-hover">
+        <% @items_genre_search.each do |item| %>
+          <tr>
+            <td class="align-middle">
+              <%= link_to item_path(item) do %>
+                <%= image_tag item.get_image, size: "200x130" %>
+              <% end %>
+            </td>
+            <td class="align-middle"><p><%= item.name %></p></td>
+            <td class="align-middle"><p><%= item.description %></p></td>
+            <td class="align-middle"><p>¥<%= item.with_tax_price %></p></td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <div class="text-center mb-5">
+        <h4>見つかりませんでした</h4>
+      </div>
+    <% end %>
+  </div>
+<% end %>

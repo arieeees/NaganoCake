@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   get 'public/orders/complete', to: 'public/orders#complete'
   
   namespace :public do
+    get 'searchs/search', as: 'search'
+  end
+  
+  namespace :public do
     resources :items, only: [:index, :show]
     resources :orders, only: [:index, :show, :new]
     resources :addresses, except: [:new, :show]
