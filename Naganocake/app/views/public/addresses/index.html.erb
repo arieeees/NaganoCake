@@ -1,2 +1,54 @@
-<h1>Public::Addresses#index</h1>
-<p>Find me in app/views/public/addresses/index.html.erb</p>
+<div class="container">
+  <div class="row mt-5 mb-5">
+    <div class="col-12">
+      <h5 class="col-2 bg-light mb-5 text-center py-0 ml-4 ">配送先登録/一覧</h5>
+      <%= form_with model: @newaddress, url: public_addresses_path, method: :post do |f| %>
+        <div class="row mb-3">
+          <span class="col-3"><%= f.label :"郵便番号(ハイフンなし)" %></span>
+          <span class="col-3"><%= f.text_field :postal_code, class: 'form-control address_postal_code border-dark' %></span>
+        </div>
+        <div class="row mb-3">
+          <span class="col-3"><%= f.label :"住所" %></span>
+          <span class="col-7"><%= f.text_field :address, class: 'form-control address border-dark' %></span>
+        </div>
+
+        <div class="row">
+          <span class="col-3"><%= f.label "宛名" %></span>
+          <span class="col-3"><%= f.text_field :name, class: 'form-control address_nam border-dark' %></span>
+          <span class="col-4"></span>
+          <span class="col-2 pl-0">
+            <%= f.hidden_field :customer_id, :value => current_customer.id %>
+            <%= f.submit "新規登録", class: 'btn btn-outline-success btn-block' %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-9">
+      <table class="table table-bordered">
+        <thead class="bg-light">
+          <tr>
+            <th class="col-2 py-3 px-1 border-dark">郵便番号</th>
+            <th class="col-5 py-3 px-1 border-dark">住所</th>
+            <th class="col-2 py-3 px-1 border-dark">宛名</th>
+            <th class="col-3 border-dark"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @addresses.each do |address| %>
+            <tr>
+              <td class="py-3 px-1 border-dark"><%= address.postal_code %></td>
+              <td class="py-3 px-1 border-dark"><%= address.address %></td>
+              <td class="py-3 px-1 border-dark"><%= address.name %></td>
+              <td class="py-3 text-center border-dark">
+               <%= link_to '編集する', edit_address_path(address), class: "btn btn-sm btn-outline-success " %>
+               <%= link_to '削除する', address_path(address), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-outline-danger " %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

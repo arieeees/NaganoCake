@@ -1,2 +1,50 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<div class="container">
+  <div class="mt-4">
+    <h4 class="offset-1"><span style="background-color: beige">注文情報入力</span></h4>
+    <%= form_with model: @order, url: confirm_public_orders_path, method: :post do |f| %>
+      <h5>支払方法</h5>
+        <div class="ml-5">
+          <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+          <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], :value => Order.payment_methods.key(0) %><br>
+          <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+          <%= f.label :payment_method, Order.payment_methods_i18n[:transfer], :value => Order.payment_methods.key(1) %><br>
+        </div>
+      <h5>お届け先</h5>
+        <div class="ml-5">
+          <%= f.radio_button :address_option, 0, checked: "checked" %>
+          <%= f.label :address_option, "ご自身の住所", :value => 0, class: "mb-0" %>
+          <div class="ml-4 mb-2">
+            〒<%= current_customer.postal_code %>
+            <%= current_customer.address %><br>
+            <%= current_customer.full_name %>
+          </div>
+          <% if current_customer.addresses.present? %>
+            <%= f.radio_button :address_option, 1 %>
+            <%= f.label :address_option, "登録済住所から選択", :value => 1, class: "mb-0" %>
+            <div class="ml-4 mb-2">
+              <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses.all, :id, :address_display) %>
+            </div>
+          <% end %>
+          <%= f.radio_button :address_option, 2 %>
+          <%= f.label :address_option, "新しいお届け先", :value => 2, class: "mb-0" %>
+          <div class="ml-4 mb-2">
+            <div class="form-group row">
+              <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "col-3" %>
+              <%= f.text_field :postal_code, class: "col-3" %><br>
+            </div>
+            <div class="form-group row">
+              <%= f.label :address, "住所", class: "col-3" %>
+              <%= f.text_field :address, class: "col-6" %><br>
+            </div>
+            <div class="form-group row">
+              <%= f.label :name, "宛名", class: "col-3" %>
+              <%= f.text_field :name, class: "col-3" %>
+            </div>
+          </div>
+        </div>
+      <div class="text-center">
+        <%= f.submit '確認画面へ進む', class: "btn btn-outline-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

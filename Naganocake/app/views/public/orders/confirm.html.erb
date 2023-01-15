@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="mt-4">
+    <h4 class="offset-1"><span style="background-color: beige">注文情報確認</span></h4>
+    <div class="row">
+      <table class="table table-bordered col-7">
+        <thead>
+          <tr>
+            <th class="text-center">商品名</td>
+            <th class="text-center">単価(税込)</td>
+            <th class="text-center">数量</td>
+            <th class="text-center">小計</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td class="align-middle">
+              <%= image_tag cart_item.item.get_image, size: "50x50" %>
+              <%= cart_item.item.name %>
+            </td>
+            <td class="align-middle"><%= cart_item.item.with_tax_price %></td>
+            <td class="align-middle"><%= cart_item.amount %></td>
+            <td class="align-middle"><%= cart_item.item.with_tax_price * cart_item.amount %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="col-4 offset-1">
+        <table class="table table-bordered">
+          <tr>
+            <th>送料</th>
+            <td><%= @order.postage %></td>
+          </tr>
+          <tr>
+            <th>商品合計</th>
+            <td><%= @total_payment %></td>
+          </tr>
+          <tr>
+            <th>請求金額</th>
+            <td><%= @order.total_payment + @order.postage %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <h4><span>支払方法</span></h4>
+      <p class="ml-3 my-auto"><%= @order.payment_method_i18n %></p>
+    </div>
+    <div class="row">
+      <h4><span>お届け先</span></h4>
+      <p class="ml-3 my-auto">
+        〒<%= @order.postal_code %><%= @order.address %><br>
+        <%= @order.name %>
+      </p>
+    </div>
+    <div class="row">
+      <div class="mx-auto">
+        <%= form_with model: @order, url: complete_public_orders_path do |f| %>
+          <%= f.hidden_field :customer_id %>
+          <%= f.hidden_field :postage %>
+          <%= f.hidden_field :status %>
+          <%= f.hidden_field :postal_code %>
+          <%= f.hidden_field :address %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :payment_method %>
+          <%= f.hidden_field :total_payment %>
+          <%= f.submit "注文を確定する", class: "btn btn-outline-success btn-lg" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,16 +2,24 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link border border-dark font-weight-bold" href="/public/customers/my_page">マイページ</a>
+          <%= link_to public_customers_my_page_path, class: 'nav-link text-light border border-dark py-1' do %>
+            <button class="btn">マイページ</button>
+          <% end %>
         </li>
         <li class="nav-item">
-          <a class="nav-link border border-dark ms-4" href="/public/items">商品一覧</a>
+          <%= link_to public_items_path,class: 'nav-link text-light border border-dark py-1 ms-3' do %>
+            <button class="btn">商品一覧</button>
+          <% end %>
         </li>
         <li class="nav-item">
-          <a class="nav-link border border-dark px-4 ms-4" href="/public/cart_items">カート</a>
+          <%= link_to public_cart_items_path,class: 'nav-link text-light border border-dark py-1 ms-3' do %>
+            <button class="btn">カート</button>
+          <% end %>        
         </li>
         <li class="nav-item">
-          <a class="nav-link border border-dark ms-4" href="/customers/sign_out">ログアウト</a>
+          <%= link_to customers_sign_out_path,class: 'nav-link text-light border border-dark py-1 ms-3' do %>
+               <button class="btn">ログアウト</button>
+          <% end %>
         </li>
       </ul>
     </div>    
@@ -19,17 +27,25 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link border border-dark font-weight-bold" href="/about">About</a>
+          <%= link_to about_path, class: 'nav-link text-light border border-dark py-1' do %>
+            <button class="btn">About</button>
+          <% end %>
         </li>
         <li class="nav-item">
-          <a class="nav-link border border-dark ms-2" href=/public/items>商品一覧</a>
+          <%= link_to public_items_path,class: 'nav-link text-light border border-dark py-1 ms-3' do %>
+            <button class="btn">商品一覧</button>
+          <% end %>
         </li>
         <li class="nav-item">
-          <a class="nav-link border border-dark ms-2" href="/customers/sign_up">新規登録</a>
+          <%= link_to new_customer_registration_path,class: 'nav-link text-light border border-dark py-1 ms-3' do %>
+            <button class="btn">新規登録</button>
+          <% end %>        
         </li>
         <li class="nav-item">
-          <a class="nav-link border border-dark ms-2" href="/customers/sign_in">ログイン</a>
+          <%= link_to new_customer_session_path,class: 'nav-link text-light border border-dark py-1 ms-3' do %>
+               <button class="btn">ログイン</button>
+          <% end %>
         </li>
       </ul>
-    </div>
+    </div>  
 <% end %>

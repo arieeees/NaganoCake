@@ -8,7 +8,7 @@
     <tr class="d-flex">
       <% @items.each do |item| %>
         <td class="new_item_table">
-          <%= link_to public_items_path(item) do %>
+          <%= link_to public_item_path(item) do %>
             <%= image_tag item.get_image, class: "new_item_image"  %>
             <p class="figure-caption"><%= item.name %></p>
             <p class="figure-caption">¥<%= item.with_tax_price %></p>

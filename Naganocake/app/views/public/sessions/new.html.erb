@@ -1,26 +1,35 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row mt-5">
+    <h4 class="col-lg-3 bg-light mb-5 text-center">ログイン</h4>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <h5 class="col-lg-5 bg-light mb-5 text-center">会員の方はこちらからログイン</h5>
   </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <%= form_with model: @customer, url: customer_session_path do |f| %>
+    <div class="form-group">
+      <div class="row text-center">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3"><%= f.label :email, "メールアドレス", class: 'text-left' %></div>
+        <div class="col-lg-5"><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control border-dark" %></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row text-center">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3"><%= f.label :password, "パスワード", class: 'text-left' %></div>
+        <div class="col-lg-5"><%= f.password_field :password, autocomplete: "current-password", class: "form-control border-dark" %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-3"></div>
+      <div class="col-lg-5 mt-3 mb-5"><%= f.submit "ログイン",  class: 'btn btn-outline-primary', style: 'width:160px' %></div>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <h5 class="col-lg-5 bg-light mb-3 text-center">会員登録がお済でない方</h5>
+      <%= render "public/shared/links" %>
+    </div>
+</div>

@@ -22,11 +22,6 @@ class Item < ApplicationRecord
     (price * 1.1).floor
   end
 
-  def is_active_method
-    if is_active == true
-      '販売中'
-    else
-      '販売停止中'
-    end
+  def enum is_active_method: {販売中: 0, 販売停止中:1}
   end
 end

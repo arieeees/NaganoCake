@@ -1,48 +1,45 @@
-<div class="carousel slide carousel-fade" id="sample" data-ride="carousel">
-  <div class="carousel-inner ">
-    <div class="carousel-item active data-bs-interval="5000"　text-right">
-      <div class="carousel-caption ">
-        <div class ="first-slid">
-          <h5>ようこそ、naganoCAKEへ！</h5>
-          <p>
-            こちらでは、長野で育てられた</br>
-            牛乳から作られたクリーミーな</br>
-            味わいの生クリームを使用しています。
-          </p>
-        </div>
-      </div>
+<div class="container-fluid" 
+     style="height: 800px">
+  <div class="row">
+    <div class="col-2 mt-5 ms-5 border border-dark" 
+         style="height: 150px"> 
+      ジャンル検索
     </div>
-    <div class="carousel-item data-bs-interval="5000"　text-right">
-      <div class="carousel-caption">
-        <div class ="second-slid">
-          <h5>会員登録がお済でない方へ</h5>
-          <p>
-            会員でない方も商品の閲覧はできますが、</br>
-            購入には会員登録が必要になります。</br>
-            <%= link_to "会員登録へ", new_customer_registration_path %>
-          </p>
-        </div>
+    <div class="col-6 mt-5 ms-5" 
+         style="height: 700px">
+      <div class="col border border-dark" 
+           style="padding-bottom: 50px">
+        <div class="col-6 mx-auto border border-dark"
+             style="margin-top: 50px;
+                    padding-top: 35px;
+                    height: 250px;">
+          <p class="margin-top: 30px">
+            ようこそ、ながのCAKEへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。
+          </p>        
+        </div> 
+      </div>
+      <div class="row py-3 mx-3 mt-5 justify-content-center">
+        <h2>新着商品</h2>
+        <table class="table table-borderless">
+          <tr class="d-flex d-block flex-wrap">
+            <% @items.each do |item| %>
+              <td class="new_item_table">
+                <%= link_to public_item_path(item) do %>
+                  <%= image_tag item.get_image, class: "new_item_image"  %>
+                  <p class="figure-caption"><%= item.name %></p>
+                  <p class="figure-caption">¥<%= item.with_tax_price %></p>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        </table>
+      </div>
+      <div class="col text-end">
+        <%= link_to "全ての商品を見る>", public_items_path %>
       </div>
     </div>
   </div>
-</div>
-<div class="genres py-3 ml-3">
-</div>
-<div class="row py-3 mx-3 justify-content-center">
-  <h1>新着商品</h1>
-  <table class="table table-borderless">
-    <tr class="d-flex d-block flex-wrap justify-content-center ">
-      <% @items.each do |item| %>
-       <td class="new_item_table">
-          <%= link_to public_items_path(item) do %>
-            <p class="figure-caption"><%= item.name %></p>
-            <p class="figure-caption">¥<%= item.with_tax_price %></p>
-          <% end %>
-        </td>
-      <% end %>
-    </tr>
-  </table>
-</div>
-<div class="col text-right">
-  <%= link_to "全ての商品を見る>", public_items_path %>
 </div>

@@ -27,10 +27,16 @@ Rails.application.routes.draw do
   
   namespace :public do
     resources :items, only: [:index, :show]
-    resources :orders, only: [:index, :show, :new]
+    resources :orders, only: [:index, :show, :new] do
+      
+      collection do
+        post '/confirm' => 'orders#confirm'
+        get '/complete' => 'orders#complete'
+      end
+    end
     resources :addresses, except: [:new, :show]
     resources :cart_items, only: [:index, :destroy, :update, :create] do
-     collection do
+      collection do
         delete '/destroy_all' => 'cart_items#destroy_all'
       end      
     end
