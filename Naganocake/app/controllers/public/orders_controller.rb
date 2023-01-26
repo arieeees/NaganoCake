@@ -48,16 +48,16 @@ class Public::OrdersController < ApplicationController
     @order.save
 
     current_customer.cart_items.each do |cart_item|
-      @ordered_item = OrderedItem.new
-      @ordered_item.item_id = cart_item.item_id
-      @ordered_item.amount = cart_item.amount
-      @ordered_item.tax_price = cart_item.item.with_tax_price
-      @ordered_item.order_id = @order.id
-      @ordered_item.save
+      @order_detail = OrderDetail.new
+      @order_detail.item_id = cart_item.item_id
+      @order_detail.amount = cart_item.amount
+      @order_detail.tax_price = cart_item.item.with_tax_price
+      @order_detail.order_id = @order.id
+      @order_detail.save
     end
 
     current_customer.cart_items.destroy_all
-    redirect_to complete_public_orders_path, notice: "注文が完了しました"
+    redirect_to public_orders_complete_path, notice: "注文が完了しました"
   end
 
   def index

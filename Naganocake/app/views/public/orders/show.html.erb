@@ -1,2 +1,75 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container">
+  <div class="mt-4">
+    <h4 class="offset-1 mb-4"><span style="background-color: lightgray">注文履歴詳細</span></h4>
+      <div class="row">
+        <div class="col">
+          <p>注文情報</p>
+          <table class="table table-bordered">
+            <tr>
+              <td>注文日</td>
+              <td><%= @order.created_at.to_s(:datetime_jp) %></td>
+            </tr>
+            <tr>
+              <td>配送先</td>
+              <td>
+                〒<%= @order.postal_code %><br>
+                <%= @order.address %><br>
+                <%= @order.name %>
+              </td>
+            </tr>
+            <tr>
+              <td>支払方法</td>
+              <td><%= @order.payment_method_i18n %></td>
+            </tr>
+            <tr>
+              <td>ステータス</td>
+              <td><%= @order.status_i18n %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col">
+          <p>請求情報</p>
+          <table class="table table-bordered">
+            <tr>
+              <td>商品合計</td>
+              <td><%= @order.items_total %></td>
+            </tr>
+            <tr>
+              <td>配送料</td>
+              <td><%= @order.postage %></td>
+            </tr>
+            <tr>
+              <td>ご請求金額</td>
+              <td><%= @order.total_payment + @order.postage %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p>注文内容</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>商品</th>
+                <th>単価(税込)</th>
+                <th>個数</th>
+                <th>小計</th>
+              </tr>
+              <% @order.order_details.each do |order| %>
+                <tr>
+                  <td><%= order.item.name %></td>
+                  <td><%= order.tax_price %></td>
+                  <td><%= order.amount %></td>
+                  <td><%= order.tax_price * order.amount %></td>
+                </tr>
+              <% end %>
+            </thead>
+          </table>
+        </div>
+      </div>
+    <div class="text-center">
+      <%= link_to "注文履歴一覧に戻る", public_orders_path, class: "btn btn-outline-primary" %>
+    </div>
+  </div>
+</div>

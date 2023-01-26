@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :customer
-  has_many :ordered_items, dependent: :destroy
+  has_many :order_detail, dependent: :destroy
 
   enum payment_method: { credit_card: 0, transfer: 1 }
   enum order_status: { waiting_for_deposit: 0, payment_confirmation: 1, in_production: 2, ready_to_ship: 3, sent: 4 }
@@ -9,10 +9,10 @@ class Order < ApplicationRecord
   validates  :name, presence: true
 
 
-  def ordered_itemes_total(order)
+  def order_details_total(order)
     array = []
-    order.ordered_items.each do |ordered_item|
-      array << ordered_item.amount
+    order.order_details.each do |ordered_item|
+      array << order_detail.amount
     end
     array.sum
   end

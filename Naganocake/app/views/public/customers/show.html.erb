@@ -1,12 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-xl-1"></div>
-    <h4 class="col-lg-3 bg-light text-center">マイページ</h4>
+    <h4 class="col-lg-3 mt-5 text-center"
+        style="background-color: #EEEEEE">
+          マイページ
+    </h4>
   </div>
   <div class="row mt-4">
     <div class="col-xl-1"></div>
     <h5 class="col-xl-2 text-center">登録情報</h5>
-    <div class="col-xl-2 text-center"><%= link_to "編集する", public_customers_information_edit_path, class: "btn btn-outline-success", style: "width:140px" %></div>
+    <div class="col-xl-2 text-center"><%= link_to "編集する", public_customers_information_edit_path, class: "btn btn-success", style: "width:140px" %></div>
   </div>
   <div class="row pt-3">
     <div class="col-xl-1"></div>
@@ -45,11 +48,11 @@
   <div class="row">
     <div class="col-xl-1"></div>
     <h5 class="col-xl-2 mt-4 text-center">配送先</h5>
-    <div class="col-xl-2 mt-4 text-center"><%= link_to "一覧を見る", public_addresses_path, class: "btn btn-outline-primary", style: "width:140px" %></div>
+    <div class="col-xl-2 mt-4 text-center"><%= link_to "一覧を見る", public_addresses_path, class: "btn btn-primary", style: "width:140px" %></div>
   </div>
   <div class="row">
     <div class="col-xl-1"></div>
     <h5 class="col-xl-2 mt-4 text-center">注文履歴</h5>
-    <div class="col-xl-2 mt-4 text-center"><%= link_to "一覧を見る", public_orders_path, class: "btn btn-outline-primary", style: "width:140px" %></div>
+    <div class="col-xl-2 mt-4 text-center"><%= link_to "一覧を見る", public_orders_path, class: "btn btn-primary", style: "width:140px" %></div>
   </div>
 </div>

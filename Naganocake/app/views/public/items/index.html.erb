@@ -1,23 +1,27 @@
-<div class="genres py-3 ml-3">
-  <%= render 'admin/genres/genre_search' %>
+<div class="row py-3 ml-3"
+     style="height: 800px">
+  <div class="col-2 mt-5 ms-5 border border-dark" 
+         style="height: 300px"> 
+      ジャンル検索
+    </div>
+  <div class="col py-3 mx-3 justify-content-center">
+    <h3>商品一覧(全<%= @all_items.count %>件)</h3>
+    <table class="table table-borderless">
+      <tr class="d-flex">
+        <% @items.each do |item| %>
+          <td class="new_item_table">
+            <%= link_to public_item_path(item) do %>
+              <%= image_tag item.get_image, class: "new_item_image"  %>
+              <p class="figure-caption"><%= item.name %></p>
+              <p class="figure-caption">¥<%= item.with_tax_price %></p>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
 </div>
-<div class="row py-3 mx-3 justify-content-center">
-  <h3>商品一覧</h3>
-  <p class="col p-2">(全<%= @all_items.count %>件)</p>
-  <table class="table table-borderless">
-    <tr class="d-flex">
-      <% @items.each do |item| %>
-        <td class="new_item_table">
-          <%= link_to public_item_path(item) do %>
-            <%= image_tag item.get_image, class: "new_item_image"  %>
-            <p class="figure-caption"><%= item.name %></p>
-            <p class="figure-caption">¥<%= item.with_tax_price %></p>
-          <% end %>
-        </td>
-      <% end %>
-    </tr>
-  </table>
-</div>
+
 <div class="col text-right">
   <%= paginate @items %>
 </div>

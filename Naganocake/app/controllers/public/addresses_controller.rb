@@ -8,12 +8,12 @@ class Public::AddressesController < ApplicationController
   end
 
   def create
-    @newaddress = Address.new(address_params)
+    @address = Address.new(address_params)
     if @address.save
       redirect_to public_addresses_path, notice: "配送先の登録に成功しました"
     else
       @customer = Customer.find(current_customer.id)
-      @addresses = @customer.addresses.all
+      @addresses = @customer.address.all
       render :index
     end
   end

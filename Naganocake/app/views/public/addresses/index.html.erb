@@ -1,8 +1,11 @@
 <div class="container">
   <div class="row mt-5 mb-5">
     <div class="col-12">
-      <h5 class="col-2 bg-light mb-5 text-center py-0 ml-4 ">配送先登録/一覧</h5>
-      <%= form_with model: @newaddress, url: public_addresses_path, method: :post do |f| %>
+      <h5 class="col-2 mb-5 text-center py-0 ml-4"
+          style="background-color: #EEEEEE">
+            配送先登録/一覧
+      </h5>
+      <%= form_with model: @address, url: public_addresses_path, method: :post do |f| %>
         <div class="row mb-3">
           <span class="col-3"><%= f.label :"郵便番号(ハイフンなし)" %></span>
           <span class="col-3"><%= f.text_field :postal_code, class: 'form-control address_postal_code border-dark' %></span>
@@ -18,7 +21,7 @@
           <span class="col-4"></span>
           <span class="col-2 pl-0">
             <%= f.hidden_field :customer_id, :value => current_customer.id %>
-            <%= f.submit "新規登録", class: 'btn btn-outline-success btn-block' %>
+            <%= f.submit "新規登録", class: 'btn btn-success btn-block' %>
           </span>
         </div>
       <% end %>
@@ -42,8 +45,8 @@
               <td class="py-3 px-1 border-dark"><%= address.address %></td>
               <td class="py-3 px-1 border-dark"><%= address.name %></td>
               <td class="py-3 text-center border-dark">
-               <%= link_to '編集する', edit_address_path(address), class: "btn btn-sm btn-outline-success " %>
-               <%= link_to '削除する', address_path(address), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-outline-danger " %>
+               <%= link_to '編集する', edit_public_address_path(address), class: "btn btn-sm btn-outline-success " %>
+               <%= link_to '削除する', public_address_path(address), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger " %>
               </td>
             </tr>
           <% end %>

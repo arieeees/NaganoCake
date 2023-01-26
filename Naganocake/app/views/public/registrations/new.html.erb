@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
-    <h4 class="col-lg-3 mb-5 bg-light text-center">新規会員登録</h4>
+    <h4 class="col-lg-3 mt-5 mb-5 text-center"
+        style="background-color: #EEEEEE">
+      新規会員登録
+    </h4>
   </div>
   <%= render "public/shared/error_messages", resource: resource %>
   <%= form_with model: @customer, url: customer_registration_path do |f| %>
@@ -82,12 +85,15 @@
       <div class="row">
         <div class="col-lg-3"></div>
         <div class="col-lg-1"></div>
-        <div class="col-lg-3 mt-3 mb-5"><%= f.submit "新規登録", class: 'btn btn-outline-success', style: 'width:160px' %></div>
+        <div class="col-lg-3 mt-3 mb-5"><%= f.submit "新規登録", class: 'btn btn-success', style: 'width:160px' %></div>
       </div>
     </div>
   <% end %>
   <div class="row">
-    <h5 class="col-lg-5 bg-light mb-3 text-center">既に登録済みの方</h5>
+    <h5 class="col-lg-5 mb-3 text-center"
+        style="background-color: #EEEEEE">
+          既に登録済みの方
+    </h5>
     <%= render "public/shared/links" %>
   </div>
 </div>

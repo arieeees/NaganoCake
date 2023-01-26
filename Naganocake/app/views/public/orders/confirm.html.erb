@@ -1,6 +1,6 @@
 <div class="container">
   <div class="mt-4">
-    <h4 class="offset-1"><span style="background-color: beige">注文情報確認</span></h4>
+    <h4 class="offset-1"><span style="background-color: #EEEEEE">注文情報確認</span></h4>
     <div class="row">
       <table class="table table-bordered col-7">
         <thead>
@@ -50,13 +50,14 @@
     <div class="row">
       <h4><span>お届け先</span></h4>
       <p class="ml-3 my-auto">
-        〒<%= @order.postal_code %><%= @order.address %><br>
+        〒<%= @order.postal_code %><br>
+        <%= @order.address %><br>
         <%= @order.name %>
       </p>
     </div>
     <div class="row">
       <div class="mx-auto">
-        <%= form_with model: @order, url: complete_public_orders_path do |f| %>
+        <%= form_with model: @order, url: public_orders_complete_path, method: :post do |f| %>
           <%= f.hidden_field :customer_id %>
           <%= f.hidden_field :postage %>
           <%= f.hidden_field :status %>

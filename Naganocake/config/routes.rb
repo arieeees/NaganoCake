@@ -17,13 +17,12 @@ Rails.application.routes.draw do
 
   get 'public/customers/my_page', to: 'public/customers#show'
   get 'public/customers/information/edit', to: 'public/customers#edit'
-  get 'public/customers/unsubscribe', to: 'public/customers#unsubscribe'
+  patch 'public/customers/my_page', to: 'public/customers#update'
   
-  get 'public/orders/complete', to: 'public/orders#complete'
+  get 'public/customers/unsubscribe_check', to: 'public/customers#unsubscribe_check'
+  patch 'public/customers/unbsubscribe', to: 'public/customers#unsubscribe'
   
-  namespace :public do
-    get 'searchs/search', as: 'search'
-  end
+  post 'public/orders/complete', to: 'public/orders#complete'
   
   namespace :public do
     resources :items, only: [:index, :show]
@@ -31,7 +30,6 @@ Rails.application.routes.draw do
       
       collection do
         post '/confirm' => 'orders#confirm'
-        get '/complete' => 'orders#complete'
       end
     end
     resources :addresses, except: [:new, :show]

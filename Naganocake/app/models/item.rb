@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
     
   has_many :cart_items, dependent: :destroy
-  has_many :ordered_items, dependent: :destroy
+  has_many :order_details, dependent: :destroy
   belongs_to :genre
 
   has_one_attached :image
@@ -14,7 +14,7 @@ class Item < ApplicationRecord
     if image.attached?
       image
     else
-      'no_image.jpg'
+      'no_image.jpg'      
     end
   end
 
@@ -22,6 +22,11 @@ class Item < ApplicationRecord
     (price * 1.1).floor
   end
 
-  def enum is_active_method: {販売中: 0, 販売停止中:1}
+  def is_active_method
+    if is_active == true
+      '販売中'
+    else
+      '販売停止中'
+    end
   end
 end

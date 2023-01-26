@@ -1,2 +1,28 @@
-<h1>Public::Addresses#edit</h1>
-<p>Find me in app/views/public/addresses/edit.html.erb</p>
+<div class="container">
+  <div class="row mt-5 mb-5">
+    <div class="col-12">
+      <h5 class="col-2 bg-light mb-5 text-center py-0 ml-4 ">配送先登録/一覧</h5>
+      <%= render "public/shared/error_messages", resource: @address %>
+      <%= form_with model: @address, url: public_address_path, method: :patch do |f| %>
+        <div class="row mb-3">
+          <span class="col-3"><%= f.label :"郵便番号(ハイフンなし)" %></span>
+          <span class="col-3"><%= f.text_field :postal_code, class: 'form-control border-dark' %></span>
+        </div>
+        <div class="row mb-3">
+          <span class="col-3"><%= f.label :"住所" %></span>
+          <span class="col-7"><%= f.text_field :address, class: 'form-control border-dark' %></span>
+        </div>
+
+        <div class="row">
+          <span class="col-3"><%= f.label "宛名" %></span>
+          <span class="col-3"><%= f.text_field :name, class: 'form-control border-dark' %></span>
+          <span class="col-4"></span>
+          <span class="col-2 pl-0">
+            <%= f.hidden_field :customer_id, :value => current_customer.id %>
+            <%= f.submit "変更を保存する", class: 'btn btn-outline-success btn-block' %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
