@@ -12,6 +12,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     if params[:order][:address_option] == "0"
       @order.name = current_customer.full_name
+      @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
 
     elsif params[:order][:address_option] == "1"
@@ -51,7 +52,7 @@ class Public::OrdersController < ApplicationController
       @order_detail = OrderDetail.new
       @order_detail.item_id = cart_item.item_id
       @order_detail.amount = cart_item.amount
-      @order_detail.tax_price = cart_item.item.with_tax_price
+      @order_detail.price = cart_item.item.with_tax_price
       @order_detail.order_id = @order.id
       @order_detail.save
     end

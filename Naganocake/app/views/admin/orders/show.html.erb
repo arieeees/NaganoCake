@@ -1,4 +1,4 @@
-<div class="container col-12">
+<div class="container mt-4 col-12">
   <h1 class="text-center bg-light">注文履歴詳細</h1>
   <div class="mt-5">
     <table class="table table-borderless offset-1">
@@ -20,9 +20,9 @@
       <tr>
         <th class="col-2 pl-4">注文ステータス</th>
         <td>
-          <%= form_with model: @order, url: admin_orders_path(@order), method: :patch do |f| %>
-            <%= f.select :order_status, Order.order_statuses_i18n.invert %>
-            <%= f.submit '更新', class: "btn btn-outline-success btn-sm" %>
+          <%= form_with model: @order, url: admin_order_path(@order), method: :patch do |f| %>
+            <%= f.select :status, Order.statuses_i18n.invert %>
+            <%= f.submit '更新', class: "btn btn-success btn-sm" %>
           <% end %>
         </td>
       </tr>
@@ -39,16 +39,16 @@
             <th>制作ステータス</th>
           </thead>
           <tbody>
-            <% @order.order_details.each do |order_detail| %>
+            <% @order.order_detail.each do |order_detail| %>
               <tr>
                 <td><%= order_detail.item.name %></td>
-                <td><%= order_detail.tax_price %></td>
+                <td><%= order_detail.price %></td>
                 <td><%= order_detail.amount %></td>
-                <td><%= order_detail.tax_price * order_detail.amount %></td>
+                <td><%= order_detail.price * order_detail.amount %></td>
                 <td>
-                  <%= form_with model: ordered_item, url: admin_path(order_detail.id), method: :patch do |f| %>
-                    <%= f.select :production_status, OrderDetail.production_statuses_i18n.invert %>
-                    <%= f.submit '変更', class: "btn btn-outline-success btn-sm" %>
+                  <%= form_with model: order_detail, url: admin_order_order_detail_path(@order.id,order_detail.id), method: :patch do |f| %>
+                    <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
+                    <%= f.submit '変更', class: "btn btn-success btn-sm" %>
                   <% end %>
                 </td>
               </tr>
@@ -60,7 +60,7 @@
         <table>
           <tr>
             <th>商品合計</th>
-            <td><%= @order.items_total %></td>
+            <td><%= @order.total_payment %></td>
           </tr>
           <tr>
             <th>送料</th>
@@ -74,7 +74,7 @@
       </div>
     </div>
     <div class="text-center mt-5">
-      <%= link_to "注文履歴一覧に戻る", admin_login_path, class: "btn btn-outline-primary" %>
+      <%= link_to "注文履歴一覧に戻る", admin_path, class: "btn btn-primary" %>
     </div>
   </div>
 </div>

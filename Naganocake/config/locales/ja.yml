@@ -4,20 +4,57 @@
         payment_method:
           credit_card: "クレジットカード"
           transfer: "銀行振込"
-        order_status:
+        status:
           waiting_for_deposit: "入金待ち"
           payment_confirmation: "入金確認"
           in_production: "製作中"
           ready_to_ship: "発送準備中"
           sent: "発送済み"
-        order_detail:
-          production_status:
-            not_startable: "着手不可"
-            waiting_for_production: "製作待ち"
-            in_production: "製作中"
-            production_completed: "製作完了"        
+      order_detail:
+        making_status:
+          not_startable: "着手不可"
+          waiting_for_production: "製作待ち"
+          in_production: "製作中"
+          production_completed: "製作完了"        
       item:
         is_active:
           on_sale: "販売中"
           discontinued: "販売停止中"
-          
+    activerecord:
+      errors:
+        messages:
+          record_invalid: 'バリデーションに失敗しました: %{errors}'
+          restrict_dependent_destroy:
+            has_one: "%{record}が存在しているので削除できません"
+            has_many: "%{record}が存在しているので削除できません"
+    errors:
+      format: "%{attribute}%{message}"
+      messages:
+        accepted: を受諾してください
+        blank: を入力してください
+        confirmation: と%{attribute}の入力が一致しません
+        empty: を入力してください
+        equal_to: は%{count}にしてください
+        even: は偶数にしてください
+        exclusion: は予約されています
+        greater_than: は%{count}より大きい値にしてください
+        greater_than_or_equal_to: は%{count}以上の値にしてください
+        in: は%{count}の範囲に含めてください
+        inclusion: は一覧にありません
+        invalid: は不正な値です
+        less_than: は%{count}より小さい値にしてください
+        less_than_or_equal_to: は%{count}以下の値にしてください
+        model_invalid: 'バリデーションに失敗しました: %{errors}'
+        not_a_number: は数値で入力してください
+        not_an_integer: は整数で入力してください
+        odd: は奇数にしてください
+        other_than: は%{count}以外の値にしてください
+        present: は入力しないでください
+        required: を入力してください
+        taken: はすでに存在します
+        too_long: は%{count}文字以内で入力してください
+        too_short: は%{count}文字以上で入力してください
+        wrong_length: は%{count}文字で入力してください
+      template:
+        body: 次の項目を確認してください
+        header: "%{model}に%{count}個のエラーが発生しました"

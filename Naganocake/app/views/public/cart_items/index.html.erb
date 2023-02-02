@@ -3,7 +3,7 @@
     <div class="row mb-3">
       <h3>ショッピングカート</h3>
       <div class="col text-right">
-        <%= link_to "カートを空にする", destroy_all_public_cart_items_path, class: 'btn btn-outline-danger', method: :delete %>
+        <%= link_to "カートを空にする", destroy_all_public_cart_items_path, class: 'btn btn-danger', method: :delete %>
       </div>
     </div>
     <table class="table table-bordered">
@@ -32,18 +32,18 @@
                   <%= f.text_field :amount, class: "form-control-sm", include_blank: cart_item.amount, type: "number" %>
                 <% end %>
                 <%= f.hidden_field :item_id, :value => cart_item.item.id %>
-                <%= f.submit '変更', class: "btn btn-outline-success btn-sm" %>
+                <%= f.submit '変更', class: "btn btn-success btn-sm" %>
               <% end %>
             </td>
             <td class="align-middle text-center"><%= cart_item.item.with_tax_price * cart_item.amount %></td>
-            <td class="align-middle text-center"><%= link_to "削除する", public_cart_item_path(cart_item.id), method: :delete, class: "btn btn-outline-danger" %></td>
+            <td class="align-middle text-center"><%= link_to "削除する", public_cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger" %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
     <div class="row mt-4">
       <div class="col">
-        <%= link_to "買い物を続ける", root_path, class: "btn btn-outline-primary" %>
+        <%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %>
       </div>
       <div class="col-4 pull-right">
         <table class="table table-bordered">
@@ -59,7 +59,7 @@
     </div>
     <div class="text-center mt-5">
       <% if current_customer.cart_items.present? %>
-        <%= link_to "情報入力に進む", new_public_order_path, class: "btn btn-outline-success btn-lg" %>
+        <%= link_to "情報入力に進む", new_public_order_path, class: "btn btn-success btn-lg" %>
       <% end %>
     </div>
   </div>

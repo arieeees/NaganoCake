@@ -1,6 +1,6 @@
 <div class="container">
   <div class="mt-4">
-    <h4 class="offset-1 mb-4"><span style="background-color: lightgray">注文履歴詳細</span></h4>
+    <h4 class="offset-1 mb-4"><span style="background-color: #EEEEEE">注文履歴詳細</span></h4>
       <div class="row">
         <div class="col">
           <p>注文情報</p>
@@ -32,7 +32,7 @@
           <table class="table table-bordered">
             <tr>
               <td>商品合計</td>
-              <td><%= @order.items_total %></td>
+              <td><%= @order.total_payment %></td>
             </tr>
             <tr>
               <td>配送料</td>
@@ -56,12 +56,12 @@
                 <th>個数</th>
                 <th>小計</th>
               </tr>
-              <% @order.order_details.each do |order| %>
+              <% @order.order_detail.each do |order| %>
                 <tr>
                   <td><%= order.item.name %></td>
-                  <td><%= order.tax_price %></td>
+                  <td><%= order.price %></td>
                   <td><%= order.amount %></td>
-                  <td><%= order.tax_price * order.amount %></td>
+                  <td><%= order.price * order.amount %></td>
                 </tr>
               <% end %>
             </thead>
@@ -69,7 +69,7 @@
         </div>
       </div>
     <div class="text-center">
-      <%= link_to "注文履歴一覧に戻る", public_orders_path, class: "btn btn-outline-primary" %>
+      <%= link_to "注文履歴一覧に戻る", public_orders_path, class: "btn btn-primary" %>
     </div>
   </div>
 </div>

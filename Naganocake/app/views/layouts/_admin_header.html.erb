@@ -1,17 +1,27 @@
 <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link border border-dark" href="/admin/items">商品一覧</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link border border-dark ms-2" href="/admin/customers">会員一覧</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link border border-dark ms-2" href="/admin">注文履歴一覧</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link border border-dark ms-2" href="/admin/genres">ジャンル一覧</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link border border-dark ms-2 mf-auto" href="/customers/sign_out">ログアウト</a>
-    </li>
+  <li class="nav-item">
+    <%= link_to admin_items_path, class: 'nav-link text-light border border-dark py-1' do %>
+      <button class="btn">商品一覧</button>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to admin_customers_path,class: 'nav-link text-light border border-dark py-1 ms-3' do %>
+      <button class="btn">会員一覧</button>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to admin_path,class: 'nav-link text-light border border-dark py-1 ms-3' do %>
+      <button class="btn">注文履歴一覧</button>
+    <% end %>        
+  </li>
+  <li class="nav-item">
+    <%= link_to admin_genres_path,class: 'nav-link text-light border border-dark py-1 ms-3' do %>
+      <button class="btn">ジャンル一覧</button>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-light border border-dark py-1 ms-3' do %>
+      <button class="btn">ログアウト</button>
+    <% end %>
+  </li>
 </ul>

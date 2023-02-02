@@ -22,7 +22,8 @@ Rails.application.routes.draw do
   get 'public/customers/unsubscribe_check', to: 'public/customers#unsubscribe_check'
   patch 'public/customers/unbsubscribe', to: 'public/customers#unsubscribe'
   
-  post 'public/orders/complete', to: 'public/orders#complete'
+  get 'public/orders/complete', to: 'public/orders#complete'
+  post 'public/orders/complete', to: 'public/orders#create'
   
   namespace :public do
     resources :items, only: [:index, :show]
@@ -53,8 +54,11 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items, only: [:new, :index, :show, :edit, :create, :update]
     resources :genres, only: [:index, :edit, :create, :update]
-    resources :orders, only: [:show]
+    resources :orders, only: [:show, :update] do
+      resources :order_details, only: [:update]
+    end
   end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
   

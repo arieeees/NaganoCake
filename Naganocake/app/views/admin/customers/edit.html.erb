@@ -1,4 +1,4 @@
-<div class="container col-12">
+<div class="container col-12 mt-4">
   <h1 class="bg-light text-center"><%= @customer.full_name %>さんの会員情報編集</h1>
   <%= render "public/shared/error_messages", resource: @customer %>
   <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
@@ -48,12 +48,12 @@
     </div>
     <div class="form-group">
       <div class="row offset-md-1">
-        <div class="col-lg-2"><%= f.label :customer_status,"会員ステータス" %></div>
+        <div class="col-lg-2"><%= f.label :is_deleted,"会員ステータス" %></div>
         <div class="col-lg-3">
-          <%= f.radio_button :customer_status, :false, checked: true %>
-          <%= f.label :customer_status, "有効", value: false %>
-          　<%= f.radio_button :customer_status, :true %>
-          <%= f.label :customer_status, "退会", value: true %>
+          <%= f.radio_button :is_deleted, :false, checked: true %>
+          <%= f.label :is_deleted, "有効", value: false %>
+          　<%= f.radio_button :is_deleted, :true %>
+          <%= f.label :is_deleted, "退会", value: true %>
         </div>
       </div>
     </div>

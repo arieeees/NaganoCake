@@ -1,4 +1,4 @@
-<div class="container col-12">
+<div class="container col-12 mt-4">
   <h1 class="text-center bg-light">会員一覧</h1>
   <div class="row my-5">
     <div class="col-md-10 mx-auto"> 
@@ -19,9 +19,9 @@
                 <td><%= customer.email %></td>
                 <td>
                   <% if customer.is_deleted == false %>
-                    <b class="text-success">有効</b>
+                    <b class="">有効</b>
                   <% else %>
-                    <b class="text-black-50">退会</b>
+                    <b class="">退会</b>
                   <% end %>
                 </td>
               </tr>

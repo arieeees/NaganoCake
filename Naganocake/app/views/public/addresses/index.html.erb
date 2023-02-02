@@ -5,6 +5,7 @@
           style="background-color: #EEEEEE">
             配送先登録/一覧
       </h5>
+      <%= render "public/shared/error_messages", resource: @address %>
       <%= form_with model: @address, url: public_addresses_path, method: :post do |f| %>
         <div class="row mb-3">
           <span class="col-3"><%= f.label :"郵便番号(ハイフンなし)" %></span>
@@ -45,7 +46,7 @@
               <td class="py-3 px-1 border-dark"><%= address.address %></td>
               <td class="py-3 px-1 border-dark"><%= address.name %></td>
               <td class="py-3 text-center border-dark">
-               <%= link_to '編集する', edit_public_address_path(address), class: "btn btn-sm btn-outline-success " %>
+               <%= link_to '編集する', edit_public_address_path(address), class: "btn btn-sm btn-success " %>
                <%= link_to '削除する', public_address_path(address), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger " %>
               </td>
             </tr>

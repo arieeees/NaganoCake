@@ -1,7 +1,7 @@
 <div class='container col-12 px-5 px-sm-0'>
     <div class="col-md-10 mx-auto">
       <div class="row">
-        <h1 class="mt-2 text-center bg-primary">商品一覧</h1>
+        <h1 class="mt-4 text-center bg-light">商品一覧</h1>
         <div class="col text-right">
           <%= link_to new_admin_item_path,class: 'btn btn-default' do %>
            <i class="fas fa-plus-circle fa-2x"></i>
@@ -26,13 +26,7 @@
             <td><%= link_to item.name, admin_item_path(item)  %></td>
             <td><%= item.price %></td>
             <td><%= item.genre.name %></td>
-            <td>
-              <%if item.is_active == true %>
-                <b class="text-success">販売中</b>
-              <% else %>
-                <b class="text-black-50">販売停止中</b>
-              <% end %>
-            </td>
+            <td><%= item.is_active_i18n %></td>
           </tr>
           <% end %>
         </tbody>

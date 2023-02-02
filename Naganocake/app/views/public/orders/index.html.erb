@@ -1,8 +1,7 @@
 <div class="container">
   <div class="mt-4">
     <h4 class="offset-1 mb-4"><span style="background-color: #EEEEEE">注文履歴一覧</span></h4>
-      <table class="table table-bordered"
-             style="background-color: #EEEEEE">
+      <table class="table table-bordered">
         <thead>
           <tr>
             <th>注文</th>
@@ -22,12 +21,12 @@
               </td>
               <td class="align-middle">
                 <% order.order_detail.each do |order_details| %>
-                  <%= order_detail.item.name %><br>
+                  <%= order_details.item.name %><br>
                 <% end %>
               </td>
-              <td class="align-middle"><%= order.items_total %></td>
+              <td class="align-middle"><%= order.total_payment %></td>
               <td class="align-middle"><%= order.status_i18n %></td>
-              <td class="align-middle text-center"><%= link_to "表示する", public_order_path(order.id, check: true), class: "btn btn-outline-primary btn-sm" %></td>
+              <td class="align-middle text-center"><%= link_to "表示する", public_order_path(order.id, check: true), class: "btn btn-primary btn-sm" %></td>
             </tr>
           <% end %>
         </thead>

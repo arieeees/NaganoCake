@@ -18,9 +18,9 @@
             <div class="d-flex">
               <%= f.select :amount, *[1..10], { include_blank: "個数選択"}, { class: "form-control" } %>
               <% if @item.is_active %>
-                <%= f.submit "カートに入れる", class: "btn btn-outline-success ml-3" %>
+                <%= f.submit "カートに入れる", class: "btn btn-success ml-3" %>
               <% else %>
-                <div class="btn btn-outline-danger soled-out"><p class="soled-text">売　切</p></div>
+                <div class="btn btn-danger soled-out"><p class="soled-text">売　切</p></div>
               <% end %>
             </div>
           <% else %>

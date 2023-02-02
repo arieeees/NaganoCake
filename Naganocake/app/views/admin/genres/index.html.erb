@@ -1,4 +1,4 @@
-<div class="container col-12">
+<div class="container col-12 mt-4">
   <h1 class="text-center bg-light">ジャンル一覧・追加</h1>
   <div class="text-center mt-5 mb-5">
     <%= render "public/shared/error_messages", resource: @genre %>
@@ -10,7 +10,7 @@
         <%= f.text_field :name, class: 'form-control genre_name' %>
       </div>
       <div class="form-check-inline">
-        <%= f.submit "新規登録", class: 'btn btn-outline-success' %>
+        <%= f.submit "新規登録", class: 'btn btn-success' %>
       </div>
     <% end %>
   </div>
@@ -26,7 +26,7 @@
       <% @genres.each do |genre| %>
         <tr class="border-bottom border-secondary">
           <td><p class="my-3 pl-5 ml-5"><%= genre.name %></p></td>
-          <td><p class="my-3"><%= link_to '編集', edit_admin_genre_path(genre.id), class: "btn btn-sm btn-outline-success" %></p></td>
+          <td><p class="my-3"><%= link_to '編集', edit_admin_genre_path(genre.id), class: "btn btn-sm btn-success" %></p></td>
         </tr>
       <% end %>
     </tbody>

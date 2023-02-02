@@ -1,4 +1,4 @@
-<div class="container col-12">
+<div class="container col-12 mt-4">
   <h1 class="text-center bg-light">注文履歴一覧</h1>
   <div class="row my-5">
     <div class="col-md-10 mx-auto">
@@ -15,12 +15,12 @@
           <% @orders.each do |order| %>
             <tr>
               <td class="col-md-3">
-                <%= link_to admin_orders_path(order) do %>
+                <%= link_to admin_order_path(order) do %>
                   <%= order.created_at.to_s(:datetime_jp_long) %></td>
                 <% end %>
               <td class="col-md-3"><%= order.customer.full_name %></td>
-              <td class="col-md-3"><%= order.ordered_itemes_total(order) %></td>
-              <td class="col-md-3"><%= order.order_status_i18n %></td>
+              <td class="col-md-3"><%= order.order_details_total(order) %></td>
+              <td class="col-md-3"><%= order.status_i18n %></td>
             </tr>
           <% end %>
           <%= paginate @orders %>

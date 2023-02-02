@@ -1,4 +1,4 @@
-<div class="container col-12">
+<div class="container col-12 mt-4">
   <h1 class="bg-light text-center"><%= @customer.full_name %>さんの会員詳細</h1>
   
   <div class="row mt-4">
@@ -36,10 +36,10 @@
           <tr>
             <td>会員ステータス</td>
             <td>
-              <% if @customer.customer_status == false %>
-                <b class="text-success">有効</b>
+              <% if @customer.is_deleted == false %>
+                <b class="">有効</b>
               <% else %>
-                <b class="text-black-50">退会</b>
+                <b class="">退会</b>
               <% end %>
             </td>
           </tr>
